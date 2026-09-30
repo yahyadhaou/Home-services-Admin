@@ -22,8 +22,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      // Browser extensions (password managers, dark-mode/theme extensions,
+      // Grammarly, ad blockers) routinely inject attributes into <html>/
+      // <body> and form inputs before React hydrates — that's an
+      // externally-caused, attribute-only mismatch, not a bug in this tree,
+      // and matches Next.js's own documented reason for this prop
+      // (https://nextjs.org/docs/messages/react-hydration-error).
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">{children}</body>
+      <body className="min-h-full flex flex-col bg-background text-foreground" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

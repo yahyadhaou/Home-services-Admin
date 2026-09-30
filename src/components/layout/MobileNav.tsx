@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, Wrench, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { NavLink } from "@/components/layout/NavLink";
 import { getNavItems } from "@/components/layout/navItems";
+import { Logo } from "@/components/brand/Logo";
 import type { Dictionary } from "@/i18n/dictionaries";
 
 // Below `lg` (see Sidebar.tsx's matching `hidden lg:flex`), the static
@@ -47,15 +48,7 @@ export function MobileNav({ dict }: { dict: Dictionary }) {
           <div className="absolute inset-0 bg-slate-900/50" onClick={() => setOpen(false)} />
           <aside className="relative flex h-full w-64 flex-col bg-sidebar px-3 py-5 shadow-xl">
             <div className="mb-6 flex items-center justify-between px-2">
-              <div className="flex items-center gap-2">
-                <span className="flex size-8 items-center justify-center rounded-lg bg-accent text-white">
-                  <Wrench className="size-4" />
-                </span>
-                <div>
-                  <p className="text-sm font-semibold text-white">HomeService</p>
-                  <p className="text-xs text-slate-400">Admin</p>
-                </div>
-              </div>
+              <Logo size={30} subtitle="Admin" />
               <button
                 onClick={() => setOpen(false)}
                 className="flex size-8 items-center justify-center rounded-lg text-slate-400 hover:bg-white/10 hover:text-white"
